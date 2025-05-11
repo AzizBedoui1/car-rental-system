@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package car;
+
+service CarService {
+  rpc GetCar (GetCarRequest) returns (Car);
+  rpc CheckCarAvailability (CheckCarAvailabilityRequest) returns (CheckCarAvailabilityResponse);
+}
+
+message GetCarRequest {
+  string id = 1;
+}
+
+message Car {
+  string id = 1;
+  string model = 2;
+  float pricePerDay = 3;
+}
+
+message CheckCarAvailabilityRequest {
+  string carId = 1;
+}
+
+message CheckCarAvailabilityResponse {
+  bool isAvailable = 1;
+  string message = 2;
+}
