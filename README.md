@@ -85,46 +85,8 @@ The system follows a **microservices architecture** with the following component
     [MongoDB ( car_db ) ]
 
 
-
-
-## 3. Project Structure
-
-C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
-├── car-service/
-│   ├── server.js
-│   ├── models/
-│   │   └── car.js
-│   └── package.json
-├── user-service/
-│   ├── server.js
-│   ├── models/
-│   │   └── user.js
-│   └── package.json
-├── reservation-service/
-│   ├── server.js
-│   ├── models/
-│   │   └── reservation.js
-│   └── package.json
-├── api-gateway/
-│   ├── server.js
-│   ├── routes/
-│   │   └── gatewayRoutes.js
-│   └── package.json
-├── notification-service/
-│   ├── server.js
-│   └── package.json
-├── kafka/
-│   └── docker-compose.yml
-├── proto/
-│   ├── user.proto
-│   ├── car.proto
-│   └── reservation.proto
-└── package.json
-
-
-
-## 4. Component Details
-### 4.1 User Service
+## 3. Component Details
+### 3.1 User Service
 - **Location**: `user-service/`
 - **Ports**:
   - REST: `http://localhost:5002`
@@ -139,7 +101,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
   - `models/user.js`: Mongoose schema.
   - `proto/user.proto`: gRPC service definition.
 
-### 4.2 Car Service
+### 3.2 Car Service
 - **Location**: `car-service/`
 - **Ports**:
   - REST: `http://localhost:5005`
@@ -154,7 +116,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
   - `models/car.js`: Mongoose schema.
   - `proto/car.proto`: gRPC service definition.
 
-### 4.3 Reservation Service
+### 3.3 Reservation Service
 - **Location**: `reservation-service/`
 - **Port**: REST: `http://localhost:5003`
 - **Endpoints**:
@@ -168,7 +130,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
   - `server.js`: REST server and gRPC clients.
   - `models/reservation.js`: Mongoose schema.
 
-### 4.4 API Gateway
+### 3.4 API Gateway
 - **Location**: `api-gateway/`
 - **Port**: `http://localhost:5000`
 - **Endpoints**:
@@ -187,7 +149,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
   - `server.js`: Express, Apollo Server, Kafka producer.
   - `routes/gatewayRoutes.js`: REST proxy routes.
 
-### 4.5 Notification Service
+### 3.5 Notification Service
 - **Location**: `notification-service/`
 - **Function**: Consumes messages from Kafka `reservations` topic and logs simulated notifications.
 - **Kafka Consumer**:
@@ -196,7 +158,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 - **Key File**:
   - `server.js`: KafkaJS consumer logic.
 
-### 4.6 Kafka
+### 3.6 Kafka
 - **Location**: `kafka/`
 - **Components**:
   - ZooKeeper: `localhost:2181`
@@ -205,7 +167,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 - **Setup**: Docker Compose (`kafka/docker-compose.yml`).
 - **Purpose**: Handles event streaming for reservation events.
 
-### 4.7 MongoDB
+### 3.7 MongoDB
 - **Database**: `car_db`
 - **Collections**:
   - `users`: `{ _id, name, email }`
@@ -215,15 +177,15 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 
 
 
-## 5. Setup Instructions
-### 5.1 Prerequisites
+## 4. Setup Instructions
+### 4.1 Prerequisites
 - **Node.js**: v20.19.1
 - **MongoDB**: Local server (`mongod --dbpath C:\mongodb\data`)
 - **Docker Desktop**: For Kafka and ZooKeeper
 - **Postman**: For testing APIs
 - **Windows**: Tested on Lenovo machine
 
-### 5.2 Installation
+### 4.2 Installation
 1. **Clone Project** (if applicable):
    - Project is at `C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system`.
 2. **Install Dependencies**:
@@ -241,7 +203,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
    docker exec -it <kafka-container-name> kafka-topics --create --topic reservations --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
    ```
 
-### 5.3 Running the System
+### 4.3 Running the System
 1. **Start MongoDB**:
    ```powershell
    mongod --dbpath C:\mongodb\data
@@ -260,7 +222,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
    cd ../notification-service && node server.js
    ```
 
-### 5.4 Expected Output
+### 4.4 Expected Output
 - **User Service**: `User Service (REST) on http://localhost:5002`, `User Service (gRPC) on port 5006`
 - **Car Service**: `Car Service on http://localhost:5005`, `gRPC server running on port 5001`
 - **Reservation Service**: `Reservation Service on http://localhost:5003`
@@ -269,8 +231,8 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 
 ---
 
-## 6. Usage
-### 6.1 Creating a User
+## 5. Usage
+### 5.1 Creating a User
 - **Endpoint**: `POST http://localhost:5002/users`
 - **Body**:
   ```json
@@ -281,7 +243,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
   {"_id": "6820810d62e81c5514d74f89", "name": "Bob", "email": "bob@example.com"}
   ```
 
-### 6.2 Adding a Car
+### 5.2 Adding a Car
 - **Endpoint**: `POST http://localhost:5005/cars`
 - **Body**:
   ```json
@@ -292,7 +254,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
   {"_id": "68208c4572b59084e104a155", "model": "Test Car", "pricePerDay": 100}
   ```
 
-### 6.3 Creating a Reservation (GraphQL)
+### 5.3 Creating a Reservation (GraphQL)
 - **Endpoint**: `POST http://localhost:5000/graphql`
 - **Body**:
   ```json
@@ -315,14 +277,14 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
   ```
 - **Side Effect**: Publishes to Kafka `reservations` topic, consumed by **notification service**.
 
-### 6.4 Viewing Notifications
+### 5.4 Viewing Notifications
 - Check **notification service** logs:
   ```
   [Notification] Received reservation: { id: '<reservationId>', userId: '6820810d62e81c5514d74f89', carId: '68208c4572b59084e104a155', createdAt: '<timestamp>' }
   [Notification] Simulated email sent for reservation ID: <reservationId>, User: 6820810d62e81c5514d74f89, Car: 68208c4572b59084e104a155
   ```
 
-### 6.5 Testing gRPC
+### 5.5 Testing gRPC
 - Use `test-user-grpc.js` and `test-car-grpc.js`:
   ```powershell
   node test-user-grpc.js
@@ -331,7 +293,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 
 ---
 
-## 7. Testing
+## 6. Testing
 - **Postman**:
   - Test REST endpoints (`/users`, `/cars`, `/reservations`).
   - Test GraphQL mutation (`createReservation`).
@@ -351,7 +313,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 
 ---
 
-## 8. Known Issues
+## 7. Known Issues
 - **Socket Hang Up**: REST `POST` requests via **API Gateway** (`http://localhost:5000/reservations`) may fail with `socket hang up`. Likely caused by `http-proxy-middleware` in `gatewayRoutes.js`.
 - **Kafka Limitations**:
   - Single broker setup is not production-ready.
@@ -360,7 +322,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 
 ---
 
-## 9. Future Improvements
+## 8. Future Improvements
 1. **Enhance Kafka**:
    - Add partitions to `reservations` topic:
      ```powershell
@@ -397,7 +359,7 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 
 ---
 
-## 10. Maintenance
+## 9. Maintenance
 - **Logs**:
   - Check service logs in each terminal.
   - Kafka logs: `docker logs <kafka-container-name>`.
@@ -414,8 +376,8 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 
 ---
 
-## 11. Appendix
-### 11.1 Sample Data
+## 10. Appendix
+### 10.1 Sample Data
 - **User**:
   ```json
   {"_id": "6820810d62e81c5514d74f89", "name": "Bob", "email": "bob@example.com"}
@@ -429,13 +391,13 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
   {"_id": "<reservationId>", "userId": "6820810d62e81c5514d74f89", "carId": "68208c4572b59084e104a155", "createdAt": "<timestamp>"}
   ```
 
-### 11.2 Key Commands
+### 10.2 Key Commands
 - **Start MongoDB**: `mongod --dbpath C:\mongodb\data`
 - **Start Kafka**: `cd kafka && docker-compose up -d`
 - **Create Topic**: `docker exec -it <kafka-container-name> kafka-topics --create --topic reservations --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
 - **Consume Kafka Messages**: `docker exec -it <kafka-container-name> kafka-console-consumer --bootstrap-server localhost:9092 --topic reservations --fromBeginning`
 
-### 11.3 Dependencies
+### 10.3 Dependencies
 - **Common**: `express`, `mongoose`, `axios`, `cors`
 - **User Service**: `grpc`, `@grpc/proto-loader`
 - **Car Service**: `grpc`, `@grpc/proto-loader`
@@ -445,5 +407,5 @@ C:\Users\lenovo\Desktop\cours polytechnique\4eme\s2\soa\car-rental-system\
 
 ---
 
-## 12. Contact
+## 11. Contact
 For issues or contributions, contact the developer at [beduiaziz18@gmail.com] or refer to the project repository (if hosted).
