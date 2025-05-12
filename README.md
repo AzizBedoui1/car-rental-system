@@ -406,6 +406,9 @@ The system follows a **microservices architecture** with the following component
 - **Notification Service**: `kafkajs`
 
 ---
+## 11. Presentation Du Projet
 
-## 11. Contact
+https://www.canva.com/design/DAGnLexhDpU/HNzn-bVccbDuq3hovXJelA/edit?utm_content=DAGnLexhDpU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+## 12. Contact
 For issues or contributions, contact the developer at [beduiaziz18@gmail.com] or refer to the project repository (if hosted).
